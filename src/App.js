@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import './App.css';
+import ImageForm from './ImageForm'; 
+import ImageList from './ImageList';
+import ImageBoard from './ImageBoard';
+import { useState } from 'react';
+
+function App(props) {
+const [img, setImg]= useState('')
+
+const addImg = (imgUrl, imgCap) => {
+  const newImg = {
+    imgUrl,
+    imgCap,
+  }
+  setImg([...img, newImg]);
+
+}
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ImageBoard />
   );
 }
 
