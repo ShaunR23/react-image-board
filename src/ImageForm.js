@@ -1,30 +1,45 @@
 import {useState} from 'react';
-function ImageForm() {
 
-const [imgUrl, setImgUrl] = useState('');
-const [imgCaption, setImgCaption] = useState('');
+
+function ImageForm({images, setImages}) {
+
+const [imgurl, setImgurl] = useState('');
+const [imgCap, setImgCap] = useState('');
+
 
     const clear = (e) =>{
-        setImgUrl('');
-        setImgCaption('');
+        setImgurl('');
+        setImgCap('');
     }
-    const submit = (e) =>{
-        e.preventDefault();
-        if(imgUrl.trim().length === 0){
-            return;
-          }
-    addImg(imgUrl, imgCaption)
-          setImgUrl('');
-          setImgCaption('');
+    
+    const handleSubmit = () => {
+        setImages([...images, {
+            imgurl: imgurl, 
+            imgCap: imgCap, 
+            id: images.length + 1
+        }]);
+      }
+          
 
-    }
+    
+    // const [state, setState] = useState({
+    //     imgUrl: '',
+    //     imgCap: '',
+    // })
 
+    // const handleInput = (e) =>{
+    //     e.preventDefault()
+    //     setState({
+    //     ...state,
+    //     [e.target.name]: e.target.value,
+    // })
+    // }
     const urlValue = (e) =>{
-        setImgUrl(e.target.value)
+        setImgurl(e.target.value)
     }
 
     const captionValue = (e) => {
-        setImgCaption(e.target.value)
+        setImgCap(e.target.value)
     }
 
 
@@ -32,13 +47,13 @@ const [imgCaption, setImgCaption] = useState('');
 
 
     return (
-    <form onSubmit = {submit}>
+    <form>
         <h2>Add your picture</h2>
         <div>
-            <input className = '' type = 'text' placeholder ='Image URL' value ={imgUrl} onChange = {urlValue}></input>
-            <input className = '' type = 'text' placeholder ='Image Caption' value ={imgCaption} onChange = {captionValue}></input>
+            <input name = 'imgurl' type = 'text' placeholder ='Image URL' value ={imgurl} onChange = {urlValue}></input>
+            <input name = 'imgCap' type = 'text' placeholder ='Image Caption' value ={imgCap} onChange = {captionValue}></input>
         </div>
-    <button type = "submit"> Add Image </button>
+    <button type = "submit" onClick={handleSubmit}> Add Image </button>
     <button type = "button" onClick = {clear}>Cancel</button>
     </form>
     )
