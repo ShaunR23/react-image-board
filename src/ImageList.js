@@ -1,19 +1,14 @@
 import ImageBoard from "./ImageBoard";
 import ImageForm from "./ImageForm";
 
-function ImageList({images}) {
-    const imagesHTML = images.map((img =>
-        <figure id = {img.id}>
-            <img imgurl = {img.imgurl} />
-            <figcaption>{img.imgCap}</figcaption>
-        </figure>
-    ));
+function ImageList({imgurl, imgCap}){
+  
     return (
-        <div>
-        {imagesHTML}
-        </div>
-    
-    )} 
-    
+        <figure className='imgBlock'>
+            <img src={imgurl} alt='photo' />
+            <figcaption className='caption'>{imgCap}</figcaption>
+        </figure>
+    );
+};
 
 export default ImageList;

@@ -6,7 +6,7 @@ import ImageBoard from './ImageBoard';
 import { useState } from 'react';
 
 function App(props) {
-const [img, setImg]= useState('')
+
 
 
   

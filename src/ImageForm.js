@@ -1,25 +1,20 @@
 import {useState} from 'react';
 
 
-function ImageForm({images, setImages}) {
+function ImageForm({submitImg}) {
 
 const [imgurl, setImgurl] = useState('');
 const [imgCap, setImgCap] = useState('');
 
 
-    const clear = (e) =>{
-        setImgurl('');
-        setImgCap('');
-    }
+   
+const handleSubmit = (e) => {
+    e.preventDefault();
     
-    const handleSubmit = () => {
-        setImages([...images, {
-            imgurl: imgurl, 
-            imgCap: imgCap, 
-            id: images.length + 1
-        }]);
-      }
-          
+    submitImg(imgurl, imgCap);
+    setImgurl('');
+    setImgCap('');
+}
 
     
     // const [state, setState] = useState({
@@ -42,7 +37,10 @@ const [imgCap, setImgCap] = useState('');
         setImgCap(e.target.value)
     }
 
-
+    const clear = (e) => {
+        setImgurl('');
+        setImgCap('');
+    }
 
 
 
